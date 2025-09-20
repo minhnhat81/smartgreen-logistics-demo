@@ -1,21 +1,34 @@
 [
 	{
+		"anonymous": false,
 		"inputs": [
 			{
+				"indexed": false,
 				"internalType": "string",
-				"name": "_orderId",
+				"name": "order_id",
 				"type": "string"
 			},
 			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "lat",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "lon",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
 				"internalType": "string",
-				"name": "_status",
+				"name": "status",
 				"type": "string"
 			}
 		],
-		"name": "updateOrderStatus",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
+		"name": "OrderUpdated",
+		"type": "event"
 	},
 	{
 		"inputs": [
@@ -74,17 +87,51 @@
 		],
 		"stateMutability": "view",
 		"type": "function"
-	}
+	},
 	{
-    "type": "function",
-    "name": "updateOrderLocationAndStatus",
-    "inputs": [
-      {"name": "order_id", "type": "string"},
-      {"name": "lat", "type": "uint256"},
-      {"name": "lon", "type": "uint256"},
-      {"name": "status", "type": "string"}
-    ],
-    "outputs": [],
-    "stateMutability": "nonpayable"
-  }
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "order_id",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "lat",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "lon",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "status",
+				"type": "string"
+			}
+		],
+		"name": "updateOrderLocationAndStatus",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_orderId",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_status",
+				"type": "string"
+			}
+		],
+		"name": "updateOrderStatus",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
 ]
