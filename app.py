@@ -283,6 +283,7 @@ if authenticated:
                 st.write(f"Đơn hàng {order_id}:")
                 # Lấy index của địa điểm từ df_locations
                 location_index = df_locations[df_locations['name'] == order_id].index[0] if order_id in df_locations['name'].values else None
+                # Sử dụng giá trị hiện tại từ session_state nếu có, nếu không dùng "Pending"
                 current_status = st.session_state.get(f"status_{order_id}", "Pending")
                 status = st.selectbox(f"Trạng thái {order_id}", ["Pending", "In Transit", "Delivered", "Failed - Customer Absent"], key=f"status_{order_id}", index=["Pending", "In Transit", "Delivered", "Failed - Customer Absent"].index(current_status))
                 if st.button(f"Cập nhật vị trí và trạng thái {order_id} trên Blockchain", key=f"update_loc_{order_id}"):
@@ -304,8 +305,9 @@ if authenticated:
                         })
                         signed_tx = w3.eth.account.sign_transaction(tx, st.secrets["PRIVATE_KEY"])
                         tx_hash = w3.eth.send_raw_transaction(signed_tx.raw_transaction)
-                        st.session_state[f"status_{order_id}"] = status
                         st.success(f"Cập nhật vị trí và trạng thái thành công! Hash: {tx_hash.hex()}")
+                        # Không gán lại st.session_state[f"status_{order_id}"] trực tiếp
+                        # Thay vào đó, cập nhật bằng cách reload hoặc để widget tự xử lý
                     except Exception as e:
                         st.error(f"Lỗi cập nhật: {str(e)}")
         else:
