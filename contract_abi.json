@@ -75,4 +75,16 @@
 		"stateMutability": "view",
 		"type": "function"
 	}
+	{
+    "type": "function",
+    "name": "updateOrderLocationAndStatus",
+    "inputs": [
+      {"name": "order_id", "type": "string"},
+      {"name": "lat", "type": "uint256"},
+      {"name": "lon", "type": "uint256"},
+      {"name": "status", "type": "string"}
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  }
 ]
